@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Simulated datasets
 const members = require('./dali_members.json');
-const posts = []; // Initialize an empty array for posts
+const posts = require('./posts.json'); // Initialize an empty array for posts
 
 // GET /members - Retrieve all members
 app.get('/members', (req, res) => {
@@ -96,27 +96,65 @@ app.get('/posts', (req, res) => {
 
 // POST /posts - Add a new post
 app.post('/posts', (req, res) => {
-    const { content, authorId } = req.body;
+    const { content, daliUID } = req.body;
 
-    if (!content || !authorId) {
-        return res.status(400).send({ message: 'Content and authorId are required fields' });
+    if (!content || !daliUID) {
+        return res.status(400).send({ message: 'Content and DALI-UID are required' });
     }
 
-    const author = members.find(m => m.id === parseInt(authorId));
-    if (!author) {
-        return res.status(404).send({ message: `Author with ID ${authorId} not found` });
+    const member = members.find(m => m.daliUID === daliUID);
+    if (!member) {
+        return res.status(404).send({ message: 'Invalid DALI-UID' });
     }
 
     const newPost = {
         id: posts.length + 1, // Auto-increment ID
         content,
-        authorId,
-        authorName: author.name,
-        timestamp: new Date().toISOString(),
+        author: { id: member.id, name: member.name, major: member.major },
+        reactions: [],
     };
 
     posts.push(newPost);
     res.status(201).json(newPost);
+});
+
+//POST /post/:id/reactions - react to a post
+app.post('/posts/:id/reactions', (req, res) => {
+    const { id } = req.params;
+    const { type, daliUID } = req.body;
+
+    if (!type || !daliUID) {
+        return res.status(400).send({ message: 'Reaction type and DALI-UID are required' });
+    }
+
+    const post = posts.find(p => p.id === parseInt(id));
+    if (!post) {
+        return res.status(404).send({ message: 'Post not found' });
+    }
+
+    const member = members.find(m => m.daliUID === daliUID);
+    if (!member) {
+        return res.status(404).send({ message: 'Invalid DALI-UID' });
+    }
+
+    post.reactions.push({
+        user: { id: member.id, name: member.name },
+        type,
+    });
+
+    res.status(201).send(post);
+});
+
+//GET /posts/:id/reactions - get post reactions with user details
+app.get('/posts/:id/reactions', (req, res) => {
+    const { id } = req.params;
+
+    const post = posts.find(p => p.id === parseInt(id));
+    if (!post) {
+        return res.status(404).send({ message: 'Post not found' });
+    }
+
+    res.status(200).json(post.reactions);
 });
 
 // DELETE /posts/:id - Delete a specific post

@@ -1,0 +1,103 @@
+[
+    {
+      "id": 1,
+      "content": "This is my first post! Excited to be here!",
+      "author": {
+        "id": "dali101",
+        "name": "John Doe",
+        "major": "Computer Science"
+      },
+      "reactions": []
+    },
+    {
+      "id": 2,
+      "content": "Just finished a great book, 'The Silent Patient'. Highly recommend it!",
+      "author": {
+        "id": "dali102",
+        "name": "Jane Smith",
+        "major": "Literature"
+      },
+      "reactions": []
+    },
+    {
+      "id": 3,
+      "content": "Had an amazing trip to the mountains this weekend! Nature is the best therapy.",
+      "author": {
+        "id": "dali103",
+        "name": "Michael Johnson",
+        "major": "Business"
+      },
+      "reactions": []
+    },
+    {
+      "id": 4,
+      "content": "I just got a new job! Super excited to start this new chapter in my career.",
+      "author": {
+        "id": "dali104",
+        "name": "Emma Brown",
+        "major": "Marketing"
+      },
+      "reactions": []
+    },
+    {
+      "id": 5,
+      "content": "Who else is excited for the upcoming tech conference next month? Can't wait to learn new things!",
+      "author": {
+        "id": "dali105",
+        "name": "Olivia Williams",
+        "major": "Computer Engineering"
+      },
+      "reactions": []
+    },
+    {
+      "id": 6,
+      "content": "Just completed a marathon today! Feeling accomplished and exhausted at the same time.",
+      "author": {
+        "id": "dali106",
+        "name": "David Miller",
+        "major": "Psychology"
+      },
+      "reactions": []
+    },
+    {
+      "id": 7,
+      "content": "I need some book recommendations! Looking for something motivational and inspiring.",
+      "author": {
+        "id": "dali107",
+        "name": "Sophia Martinez",
+        "major": "Philosophy"
+      },
+      "reactions": []
+    },
+    {
+      "id": 8,
+      "content": "Visited the art gallery yesterday and saw some incredible pieces. Art truly speaks to the soul.",
+      "author": {
+        "id": "dali108",
+        "name": "William Taylor",
+        "major": "Fine Arts"
+      },
+      "reactions": []
+    },
+    {
+      "id": 9,
+      "content": "Starting my new fitness journey today! Hoping to stay consistent and healthy.",
+      "author": {
+        "id": "dali109",
+        "name": "Isabella Davis",
+        "major": "Nutrition"
+      },
+      "reactions": []
+    },
+    {
+      "id": 10,
+      "content": "Just watched the latest movie release. It was a rollercoaster of emotions!",
+      "author": {
+        "id": "dali110",
+        "name": "James Wilson",
+        "major": "Film Studies"
+      },
+      "reactions": []
+    }
+  ]
+  
