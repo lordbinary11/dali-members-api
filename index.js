@@ -87,6 +87,35 @@ app.get('/members/filter', (req, res) => {
     res.status(200).json(filteredMembers);
 });
 
+// POST /login - Handle user login
+app.post('/login', (req, res) => {
+    const { daliUID, password } = req.body;
+
+    // Validate input
+    if (!daliUID || !password) {
+        return res.status(400).send({ message: 'DALI-UID and password are required' });
+    }
+
+    // Find the member with the provided DALI-UID
+    const member = members.find(m => m.daliUID === daliUID);
+
+    if (!member) {
+        return res.status(404).send({ message: 'Invalid DALI-UID' });
+    }
+
+    // For simplicity, assume password is stored in plain text (not recommended for production)
+    if (member.password !== password) {
+        return res.status(401).send({ message: 'Incorrect password' });
+    }
+
+    // Respond with success and optionally include user details
+    res.status(200).send({ 
+        message: 'Login successful', 
+        user: { id: member.id, name: member.name, major: member.major } 
+    });
+});
+
+
 // --- POSTS ENDPOINTS ---
 
 // GET /posts - Retrieve all posts
